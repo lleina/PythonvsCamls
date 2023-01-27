@@ -1,0 +1,8 @@
+(executable
+ (name gui)
+ (libraries
+  graphics
+  src
+  unix
+  camlimages.all
+  imagelib.unix))

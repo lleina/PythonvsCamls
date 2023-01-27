@@ -1,0 +1,195 @@
+WELCOME TO CAMELS VS. PYTHONS!
+A game (and CS3110 Final Project) made by Nila Narayan (nn257), Leina Li (ll736),
+     Adeniyi Fagbewesa (amf349)
+
+Upon unzipping the file, follow the following instructions to run our game so far. Commands to be entered in the terminal will be delimited by []
+
+*******************************************************************************************************
+
+INSTRUCTIONS TO PLAY IN TERMINAL VERSION:
+1. Open ubuntu, or alternative open a new terminal in VS Code (Ctrl + Shift + ` on Windows).
+2. In terminal, make your way to the directory in which this repository is stored using cd commands
+3. Run [make play] in your terminal
+4. Now, the game should have opened up in your terminal.
+    You may follow the given instructions to place objects onto the board. Take note of the fact that pythons will randomly appear and move as well!
+    The game instructions are also outlined below:
+    A 5x10 board should appear on the bottom of your screen, wherein every tile is delimited by [].
+    Objects can be placed on the board by specifying their type followed by their horizontal position [x] and vertical position [y].
+    For example [camel 1 1] will place a camel in the upper leftmost corner.
+    The four object types that can be typed into the terminal are "camel" "cactus" "python" and "spit".
+    The board begins indexing from 1, so [x] ranges from 1 to 10 and [y] ranges from 1 to 5.
+    If you do not want to place any new objects and would just like to pass this turn, simply hit enter without specifying any command.
+
+    *Note that while pythons can be manually placed, they are intended to be the villains of the game and spawn on their own, anyways.
+5. To end the game, enter "quit" and you should return to utop.
+
+********************************************************************************************************
+
+INSTRUCTIONS TO PLAY IN GUI VERSION: 
+(EPILEPSY WARNING FOR THOSE WHO MAY BE CONCERNED: Because of how the graphics render, there are flashing lights.
+If this may trigger something for you, we recommend the terminal version of the game! It's just as fun!)
+
+1. First make sure to have graphics module downloaded. If not downloaded, the instructions are below:
+To download graphics module:
+    1) open terminal
+    2) install graphics by entering in [opam install graphics] and then enter [y].
+    3) install imagelib by entering in [opam install imagelib] and then enter [y].
+    4) install camlimages by entering in [opam install camlimages] and then enter [y].
+    5) enter in [sudo apt install libexpat1-dev].
+    6) run [sudo apt-get update]
+    7) enter in [sudo apt install libgtk2.0-dev] and then enter [y].
+    8) install lablgtk by entering in [opam install lablgtk].
+
+2. Follow the rest of the instructions below:
+
+Windows Initial Setup Instructions:
+
+1) Install XMing to your Windows system.
+
+    * Install XMing from this link: https://sourceforge.net/projects/xming/.
+    
+    * Keep the default settings throughout installation.
+    
+    * Launch XMing
+
+        * You can tell XMing is running if the icon appears in your system tray
+        (depending on your system, the tray appears at the bottom of your
+        screen, and Xming will either be in the bottom bar or inside a menu that
+        can be accessed through the "^" on the bottom right hand side of the
+        bottom bar).
+
+2) Host an ssh server on your WSL.
+
+    * Open ubuntu and install openssh-server with this command:
+      
+        sudo apt install openssh-server
+
+    * Open your ssh settings:
+      
+        sudo nano /etc/ssh/sshd_config
+
+    * Find the following (separate) lines of the settings:
+
+        #PasswordAuthentication yes
+        
+        #X11Forwarding no
+    
+    * Edit the above lines of the settings to what is listed below:
+      
+        PasswordAuthentication yes
+        
+        X11Forwarding yes
+
+    * Save the settings with Ctrl+x, then type "y" to save to the buffer, then 
+      press "enter" to save the changes to the listed file.
+
+    * Start your server with the following command:
+      
+        sudo service ssh start
+
+3) Find your IP address on your WSL.
+
+    * Install net-tools with the following command on your WSL:
+      
+        apt install net-tools
+
+    * Run the following commend to get your IP address:
+    
+        ifconfig
+
+    * The output should start with something like the following. Your IP address 
+      is the one marked by X's below.
+      
+        eth0: flags=----<UP,BROADCAST,RUNNING,MULTICAST>  mtu ----
+            inet XXX.XX.XX.XXX  netmask ---.---.---.-  broadcast ---.--.--.---
+
+4) Install PuTTY to your Windows system.
+
+    * Install PuTTY from this link: https://sourceforge.net/projects/xming/.
+
+    * Keep the default settings throughout installation.
+    
+    * Launch PuTTY.
+
+    * Set up your connection settings.
+    
+        * Copy and Paste your IP address obtained in step 3 to "Host Name (or IP
+        address)".
+
+        * Make sure "Connection type" is set to "SSH".
+
+        * Using the lefthand menu, navigate to "Connection" - "SSH" - "X11".
+
+        * Check the box that reads "Enable X11 forwarding".
+
+        * Set "X display location" to "localhost:0.0"
+
+        * Using the lefthand menu, navigate back to "Session".
+
+        * Under "Saved Sessions" type a name for your settings and save them.
+
+    * Click "open".
+
+    * If there is a popup over the PuTTY terminal, select "accept". Input your 
+      ubuntu username, and then your ubuntu password.
+
+5) From your PuTTY terminal, follow the instructions above to launch the 
+   Camls vs. Python game.
+
+--------------------------------------------------------------------------------
+Windows recurring setup instructions (to set up your server before every
+Camls vs. Python session):
+
+1) Make sure XMing is running, if not launch XMing.
+    
+    * You should only have to relaunch XMing every time you shut down your
+      computer.
+
+    * You can tell XMing is running if the icon appears in your system tray
+      (depending on your system, the tray appears at the bottom of your screen, 
+      and Xming will either be in the bottom bar or inside a menu that can be 
+      accessed through the "^" on the bottom right hand side of the bottom bar).
+
+2) Make sure your ssh server is running.
+    
+    * You should only have to restart your server every time you shut down your
+    computer.    
+
+    * Run the following command to see if your server is running:
+      
+        service ssh status
+    
+    * If it is still running, you can use the same server settings in PuTTY and 
+      you are all set with step 2, otherwise you have to start the server again 
+      with the following command:
+
+        sudo service ssh start
+
+    * Obtain your new IP address using the following command:
+    
+        ifconfig
+
+3) Connect to your ssh server through PuTTY.
+
+    * Open PuTTY. If you did not have to restart your server, you can simply 
+      "load" the previously saved server settings and click "open". Otherwise,
+      load the previous settings, and update the IP address to match your new IP
+      address obtained in step 2. Save your new settings and click "open".
+
+    * If there is a popup over the PuTTY terminal, select "accept". Input your
+      ubuntu username, and then your ubuntu password.
+
+4) From your PuTTY terminal, follow the instructions above to launch the 
+   Camls vs. Python game. go into directory with the game file and enter [make playgui]
+
+   
+********************************************************************************************************
+We would like to give our thanks to the artists whom we sourced our graphics from !
+Image Sources:
+Camel: https://www.alamy.com/vector-illustration-of-cartoon-camel-pixel-design-image177851714.html
+Python: https://www.shutterstock.com/image-vector/vector-illustration-cartoon-snake-pixel-design-398666929
+Cactus: https://www.pngkey.com/png/detail/513-5134103_pixel-cactus-png-clip-black-and-white-stock.png 
+Game Backgrounds: https://www.freepik.com/free-vector/design-complete-set-score-button-game-pop-up-icon-window-elements-creating-medieval-rpg-video-games_14246137.htm#query=game%20ui&position=1&from_view=keyword
+
+Camel in Suit: https://pixers.ca/posters/portrait-of-a-funny-camel-in-a-business-suit-51385975
+You Lose, Good Day Sir: https://img.itch.zone/aW1nLzI1NjA5OTIucG5n/original/0VxTWw.png
