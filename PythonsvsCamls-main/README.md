@@ -1,4 +1,4 @@
-# CS 3110 Final Project
+#Pythons vs Camels
 Leina Li (ll736), Nila Narayan (nn257), Adeniyi Fagbewesa (amf349)
 
 This project, written from scratch in OCaml, utilizes functional programming and graphics to recreate the popular mobile game Plants vs. Zombies.
